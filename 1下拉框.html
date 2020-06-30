@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Ydmpu3ZaYKkxqxj2XCDHWPxzttCgEW1L"></script>
+		<script type="text/javascript">
+			$(function(){
+				//百度地图API功能
+				var map=new BMap.Map("baiduMap");	//创建Map实例
+				map.centerAndZoom(new BMap.Point(113.27,23.13),50);	//初始化地图，设置中心点坐标和地图级别
+				map.addControl(new BMap.MapTypeControl());	//添加地图显示的城市
+				map.setCurrentCity("广州");		//设置地图现实的城市
+				map.enableScrollWheelZoom(true);		//开始鼠标滚轮缩放
+				
+				//出发工具提示
+				$('[data-toggle="tooltip"]').tooltip();
+			})
+		</script>
+		<style>
+			nav{
+				padding-right: 20px;
+				opacity: 0.8;
+			}
+			
+			#myNav li.active a{
+				background-color: white;
+				color: black;
+			}
+			
+			#myNav li:hover{
+				background-color: red;
+			}
+			
+			.dropdown-menu li:hover a{
+				background-color: red;
+				color: white;
+			}
+			
+			#tour{
+				background-color: black;
+				padding: 80px;
+			}
+			
+			/*页脚*/
+			footer{
+				background-color: black;
+				padding: 50px;
+			}
+			
+			/*轮播图*/
+			.carousel-inner img{
+				width: 100%;
+			}
+			
+			/*设置成员信息的上下框*/
+			#member{
+				padding-top: 80px;
+				padding-bottom: 100px;
+			}
+			
+			/*设置成员信息的图片大小*/
+			#member img{
+				widows: 60px;
+				height:60% ;
+			}
+			
+			/*鼠标滑过时给图片加边框*/
+			#member img:hover{
+				border: 10px solid lightpink;
+				opacity: 0.8;
+			}
+			#title{
+				color: white;
+			}
+			
+			/*设置第三*/
+			.list-group{
+				color: gray;
+				/*padding: 10px 15px;*/
+			}
+			
+			.btn{
+				background-color: black;
+				color: white;
+				padding: 10px 20px;
+				border-radius: 0;
+				margin-bottom: 15px;
+			}
+			
+			.thumbnail{
+				border: none;
+				border-radius: 0;
+				padding: 0px;
+			}
+			
+			.btn:hover,.btn:focus{
+				background-color: white;
+				color: black;
+				border: 1px solid black;
+			}
+			
+			.modal-header{
+				background-color: black;
+				color: white;
+			}
+			
+			#content{
+				padding: 70px 0px;
+			}
+			/*设置地图的显示容器的大小*/
+			#baiduMap{
+				width: 100%;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body data-spy="scroll" data-target="#mynavbar" data-offset="200" id="myPage">
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="mynavbar">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-collapse-1">
+					<span class="sr-only">Toggle navigatio</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img src="img/logo.png" width="120px" />
+				</a>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="bs-collapse-1">
+				<ul class="nav navbar-nav navbar-right" id="myNav">
+					<li class="active"><a href="#home">主页</a></li>
+					<li><a href="#member">成员</a></li>
+					<li><a href="#tour">巡演</a></li>
+					<li><a href="#contact">联系</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+							更多
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">歌单</a></li>
+							<li><a href="#">专辑</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+				</ul>
+			</div>
+		</nav>
+		
+			<div id="home">
+				<div class="carousel slide" id="myCar" data-ride="carousel" data-interval="2000">
+				<ol class="carousel-indicators">
+					<!--data-target="#myCar":设置计数器的归属-->
+					<li data-target="#myCar" data-slide-to="0" class="active"></li>
+					<li data-target="#myCar" data-slide-to="1"></li>
+					<li data-target="#myCar" data-slide-to="2"></li>
+				</ol>
+				
+				<!--放置轮播图的图片
+					item：放置每一张轮播图的内容
+					carousel-caption：放一些文字说明
+				-->
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="img/ych1.jpg" />
+						<div class="carousel-caption">
+							<h3>新疆</h3>
+							<p>北京久等了</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="img/ych2.jpg" />
+						<div class="carousel-caption">
+							<h3>北京</h3>
+							<p>北京久等了</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="img/ych3.jpg" />
+						<div class="carousel-caption">
+							<h3>新疆</h3>
+							<p>北京久等了</p>
+						</div>
+					</div>
+				</div>
+				
+				<!--carousel-control：轮播图控制器
+					data-slide="prev"：切换到前一张图片
+					left/right:控制图标的显示位置
+					data-slide="next"：切换到下一张图片
+				-->
+				<a class="carousel-control lead" href="#myCar" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a class="carousel-control right" href="#myCar" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</div>
+		</div>
+		<div id="member">
+			<div class="container">
+				<div class="row text-center">
+					<h2>我们的成员</h2>
+					<p<i>我们爱音乐</i></p>
+					<p>详细说明</p>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<p><b>Susan</b></p>
+						<img src="img/member1.jpg" class="img-circle" data-toggle="collapse"
+							data-target="#men1" />
+							
+						<div class="collapse" id="men1">
+							<p>2787</p>
+							<p>27872787</p>
+							<p>278727872787</p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4 text-center">
+						<p><b>Susan</b></p>
+						<img src="img/member2.jpg" class="img-circle" data-toggle="collapse"
+							data-target="#men2" />
+						<div class="collapse" id="men2">
+							<p>2787</p>
+							<p>27872787</p>
+							<p>278727872787</p>
+						</div>
+					</div>
+					<div class="col-sm-4 text-center">
+						<p><b>Susan</b></p>
+						<img src="img/member3.jpg" class="img-circle" data-toggle="collapse"
+							data-target="#men3" />
+						<div class="collapse" id="men3">
+							<p>2787</p>
+							<p>27872787</p>
+							<p>278727872787</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="tour">
+			<div class="container">
+				<div class="row text-center" id="title">
+					<h2>日期</h2>
+					<p><i>我们将会......</i></p>
+					<p><i>快来......</i></p>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-12">
+						<ul class="list-group">
+							<li class="list-group-item">
+								九月<span class="label label-danger">售完</span>
+							</li>
+							<li class="list-group-item">
+								九月<span class="label label-danger">售完</span>
+							</li>
+							<li class="list-group-item">
+								九月<span class="label label-danger">3</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="thumbnail text-center">
+							<img src="img/bj.jpg" />
+							<h4><i>北京</i></h4>
+							<p><i>2787</i></p>
+							<button type="button" class="btn" data-toggle="modal" data-target="#login" data-backdrop="static">购票</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="thumbnail text-center">
+							<img src="img/sh.jpg" />
+							<h4><i>上海</i></h4>
+							<p><i>2787</i></p>
+							<button type="button" class="btn" data-toggle="modal" data-target="#login" data-backdrop="static">购票</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="thumbnail text-center">
+							<img src="img/wh.jpg" />
+							<h4><i>武汉</i></h4>
+							<p><i>2787</i></p>
+							<button type="button" class="btn" data-toggle="modal" data-target="#login" data-backdrop="static">购票</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="login">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>
+								<h2 class="text-center">
+									<span class="glyphicon glyphicon-lock"></span>Tickets
+								</h2>
+							</div>
+							<div class="modal-body">
+								<div class="form">
+									<div class="form-group">
+										<label for="psw">
+											<span class="glyphicon glyphicon-shopping-cart"></span>
+											Tickets,没人23元
+										</label>
+										<input type="number" class="form-control" placeholder="How many?" />
+									</div>
+									<div class="form-group">
+										<label for="usrname">
+											<span class="glyphicon glyphicon-user"></span>
+											发送
+										</label>
+										<input type="text" class="form-control" placeholder="Enter email?" />
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-block">
+											<span class="glyphicon glyphicon-ok"></span>支付
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn pull-left" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove"></span>取消
+								</button>
+								<p>需要<a href="#">帮助？</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="content">
+			<div class="container">
+				<div class="row text-center">
+					<h2>联系我们</h2>
+					<p<em>我们热爱我们的粉丝</em></p>
+				</div>
+						
+				<div class="row">
+					<div class="col-sm-4">
+						<p>27872787</p>
+						<p>27872787</p>
+						<p>27872787</p>
+						<p>27872787</p>
+					</div>
+					
+					<div class="col-sm-8">
+						<div class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-6">
+									<input type="text" class="form-control" placeholder="Name" />
+								</div>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" placeholder="Email" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<textarea class="form-control" placeholder="Comment"></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group pull-right">
+								<div class="col-sm-12">
+									<button type="button" class="btn">发送</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="baiduMap"></div>
+		
+		<footer class="text-center">
+			<a href="#myPage" title="To-Top" data-toggle="tooltip"
+				data-placement="top">
+				<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<br />
+			<img src="img/logo.png" width="120" />
+		</footer>
+	</body>
+</html>
